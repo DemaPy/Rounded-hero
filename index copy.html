@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+      * {
+        box-sizing: border-box;
+      }
+      html,
+      body {
+        height: 100%;
+        margin: 0;
+      }
+
+      .container {
+        height: 100%;
+        margin: 0 auto;
+        max-width: 1440px;
+        padding: 1rem;
+      }
+
+      .bg1 {
+        width: 80%;
+        height: 35%;
+        background: #242424;
+      }
+
+      .bg2 {
+        width: 80%;
+        height: 65%;
+        position: relative;
+        left: 20%;
+        background: #242424;
+      }
+
+      .round {
+        filter: url(#round);
+      }
+
+      .filter {
+        filter: url(#filter);
+      }
+    </style>
+  </head>
+  <body>
+    <img
+      class="filter"
+      src="./img.jpg"
+      style="position: absolute; inset: 0; z-index: 10"
+    />
+
+    <div id="filter" class="container round">
+      <div class="bg1"></div>
+      <div class="bg2"></div>
+    </div>
+
+    <svg
+      style="position: fixed"
+      width="230"
+      height="120"
+      xmlns="http://www.w3.org/2000/svg"
+      xmlns:xlink="http://www.w3.org/1999/xlink"
+    >
+      <filter id="round">
+        <feGaussianBlur in="SourceGraphic" stdDeviation="5" result="blur" />
+        <feColorMatrix
+          in="blur"
+          mode="matrix"
+          values="1 0 0 0 0 0 1 0 0 0 0 0 1 0 0 0 0 0 19 -9"
+          result="goo"
+        />
+        <feComposite in="SourceGraphic" in2="goo" operator="atop" />
+      </filter>
+    </svg>
+  </body>
+</html>
